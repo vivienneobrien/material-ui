@@ -16,9 +16,19 @@ const theme = createMuiTheme ({
           }
       },
     typography: {
-        h3: {
-            fontWeight: 300
+        tab: {
+            fontFamily: "Raleway",
+            textTransform: "none",// button is underneath tab so to avoid all caps use none
+            // fontWeight: 700,
+            fontSize: "1rem",
+        },
+        button: {
+            fontFamily: "Pacifico",
+            fontSize: "1rem",
+            textTransform: "none",
+            color: "white"
         }
+        
     }
   });
 export default theme
