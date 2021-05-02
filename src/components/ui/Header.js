@@ -2,6 +2,21 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Typography from "@material-ui/core/Typography"
+import {makeStyles} from "@material-ui/core/styles"
+
+import logo from "../network.png"
+// different syntax so that we can use our theme inside of our styles
+// this is so hello under header
+const useStyles = makeStyles (theme => (
+  // object underneath
+  {
+    toolbarMargin: {
+      // the spread operator copies the whole object of mixins
+      ...theme.mixins.toolbar
+    }
+  }
+))
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -20,13 +35,23 @@ function ElevationScroll(props) {
 }
 
 const Header = (props) => {
+
+  const classes = useStyles()
     return (
-        <div>
+        <React.Fragment> 
+        {/* we use fragment instead of div because bit faster and has less memory usage (no need to create an extra DOM node */}
        <ElevationScroll>
-        <AppBar position="fixed"> 
-        <Toolbar>Data Visualisation</Toolbar>
+        <AppBar position="fixed" color="primary"> 
+        {/* disableGutters={true} if you wanted logo to go all the way to the left of the appbar*/}
+        <Toolbar> 
+        {/* <Typography variant="h3" color="secondary">
+        Data Visualisation</Typography> */}
+        <img alt= "MyLogo" src={logo} width="50px"/>
+        </Toolbar>
         </AppBar></ElevationScroll>
-        </div>
+        <div className={classes.toolbarMargin}/>
+        </React.Fragment>
+      
 
     )
 }
